@@ -1,30 +1,30 @@
 let images = [
-    "images/img1.jpg",
-    "images/img2.jpg",
-    "images/img3.jpg",
-    "images/img4.jpg",
-    "images/img5.jpg",
-    "images/img6.jpg"
+    "images/1.png",
+    "images/2.png",
+    "images/3.png",
+    "images/4.png",
+    "images/5.png",
+    "images/6.png"
 ];
 
 let index = 0;
+let img = document.getElementById("mainImage");
+
 let startX = 0;
 
-const img = document.getElementById("mainImage");
-
-document.addEventListener("touchstart", (e) => {
+document.addEventListener("touchstart", e => {
     startX = e.touches[0].clientX;
 });
 
-document.addEventListener("touchend", (e) => {
+document.addEventListener("touchend", e => {
     let endX = e.changedTouches[0].clientX;
-    let diff = startX - endX;
 
-    if (diff > 50) {
-        // next
+    if (startX - endX > 50) {
+        // swipe left
         index = (index + 1) % images.length;
-    } else if (diff < -50) {
-        // previous
+    } 
+    else if (endX - startX > 50) {
+        // swipe right
         index = (index - 1 + images.length) % images.length;
     }
 
