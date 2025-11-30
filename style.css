@@ -9,7 +9,7 @@ body {
 
 .viewer {
     width: 100%;
-    max-width: 200px; /* यह बदलकर size control होता है */
+    max-width: 100%px; /* यह बदलकर size control होता है */
     overflow: hidden;
 }
 
