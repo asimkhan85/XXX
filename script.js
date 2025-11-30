@@ -1,14 +1,39 @@
-let totalImages = 6; // कितनी photos हैं
-let current = 1;
+let images = [
+    "images/1.png",
+    "images/2.png",
+    "images/3.png",
+    "images/4.png",
+    "images/5.png",
+    "images/6.png"
+];
 
-const img = document.getElementById("productImage");
+let index = 0;
+let imgTag = document.getElementById("mainImage");
 
-window.addEventListener("touchmove", (e) => {
-    let x = e.touches[0].clientX;
+// Swipe detect
+let startX = 0;
 
-    if (x % 20 === 0) {
-        current++;
-        if (current > totalImages) current = 1;
-        img.src = current + ".png";
+document.addEventListener("touchstart", function(e) {
+    startX = e.touches[0].clientX;
+});
+
+document.addEventListener("touchend", function(e) {
+    let endX = e.changedTouches[0].clientX;
+
+    if (startX - endX > 50) {
+        nextImage();      // left swipe
+    } 
+    else if (endX - startX > 50) {
+        prevImage();      // right swipe
     }
 });
+
+function nextImage() {
+    index = (index + 1) % images.length;
+    imgTag.src = images[index];
+}
+
+function prevImage() {
+    index = (index - 1 + images.length) % images.length;
+    imgTag.src = images[index];
+}
