@@ -7,15 +7,15 @@ body {
     height: 100vh;
 }
 
-.gallery-container {
+.viewer {
     width: 100%;
-    max-width: 420px; /* NORMAL MOBILE GALLERY SIZE */
+    max-width: 400px; /* यह बदलकर size control होता है */
     overflow: hidden;
 }
 
-.gallery-container img {
+.viewer img {
     width: 100%;
     height: auto;
-    border-radius: 10px;
     display: block;
+    user-select: none;
 }
