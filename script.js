@@ -1,14 +1,45 @@
-let totalImages = 6; // कितनी photos हैं
-let current = 1;
+let current = 0;
 
-const img = document.getElementById("productImage");
+const images = [
+  "1.png",
+  "2.png",
+  "3.png",
+  "4.png",
+  "5.png",
+  "6.png"
+];
 
-window.addEventListener("touchmove", (e) => {
-    let x = e.touches[0].clientX;
+const img = document.getElementById("img");
 
-    if (x % 20 === 0) {
-        current++;
-        if (current > totalImages) current = 1;
-        img.src = current + ".png";
-    }
-});
+img.src = images[current];
+
+img.addEventListener("touchstart", startTouch, false);
+img.addEventListener("touchend", endTouch, false);
+
+let startX = 0;
+
+function startTouch(e) {
+  startX = e.changedTouches[0].screenX;
+}
+
+function endTouch(e) {
+  let endX = e.changedTouches[0].screenX;
+
+  if (endX < startX - 50) {
+    nextImage();
+  }
+  if (endX > startX + 50) {
+    prevImage();
+  }
+}
+
+function nextImage() {
+  current = (current + 1) % images.length;
+  img.src = images[current];
+}
+
+function prevImage() {
+  current =
+    (current - 1 + images.length) % images.length;
+  img.src = images[current];
+}
